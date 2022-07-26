@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+
+
+{%if jobapplications%}
+            {%for appli in jobapplications%}
+            <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{appli.applicant}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Date of Application:{{appli.date}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">Status: <span class="text-success">{{appli.status}}</span></h6>
+
+    <a href="{%url 'emp-appli-profile-detail' appli.id%}" class="card-link">Detail</a>
+  </div>
+</div>
+{%endfor%}
+{%else%}
+            <div class="mt-5">
+                    <h4 class="card-title">No New Applications</h4>
+            </div>
+            {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+</body>
+</html>

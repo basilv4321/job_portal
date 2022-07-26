@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h2>Welcome Candidate {{request.user}}</h2>
+
+            {%if request.user.candprofile%}
+            <a href="{%url 'cand-profileview'%}">View Profile</a> &nbsp&nbsp&nbsp
+            {%else%}
+            <a href="{%url 'cand-profileadd'%}">Add Profile</a> &nbsp&nbsp&nbsp
+            {%endif%}
+            <a href="{%url 'cand-appli-list'%}">Applications</a> &nbsp&nbsp&nbsp
+            <a href="{%url 'cand-notifications'%}">Notifications</a> &nbsp&nbsp&nbsp
+            </div>
+<div class="col-3"></div>
+    </div>
+
+            <br><br><br>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+
+                 <form action=""method="get">
+                     <br>
+                     <div class="row">
+                         <div class="col-1">{{filter.form.posted_by}}</div>
+                         <div class="col-2">Title: {{filter.form.job_title}}</div>
+                         <div class="col-2">Role: {{filter.form.role}}</div>
+                         <div class="col-2">Location: {{filter.form.location}}</div>
+                         <div class="col-2">Salary: {{filter.form.salary}}</div>
+                         <div class="col-2">Qualification: {{filter.form.qualification}}</div>
+                        <div class="col-1"><input type="submit"></div>
+                     </div>
+
+
+                     <br><br><br><br>
+            </form>
+
+            </div>
+            <div class="col-1"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+
+                {%for job in filter.qs%}
+            <div class="card border-secondary mb-3" style="max-width: 18rem;">
+  <div class="card-header bg-secondary border-secondary fw-bold">{{job.posted_by}}</div>
+  <div class="card-body text-black bg-light">
+    <h5 class="card-title">{{job.job_title}}</h5>
+      <h5 class="card-title">role: {{job.role}}</h5>
+    <p class="card-text">{{job.job_description}}</p>
+  </div>
+  <div class="card-footer bg-white-50 border-secondary"><a href="{%url 'cand-jobdetail' job.id%}" class="btn btn-success">View</a></div>
+</div>
+            {%endfor%}
+
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+
+</div>
+</body>
+</html>
